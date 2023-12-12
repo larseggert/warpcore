@@ -188,6 +188,8 @@ int main(void)
         case 5:
             swp();
             break;
+        default:
+            die("oops");
         }
 
         if (r(1000) == 0) {

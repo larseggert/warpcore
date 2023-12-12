@@ -77,7 +77,7 @@ set(CMAKE_C_STANDARD 11)
 # Set general compile flags, if they are supported
 include(CheckCCompilerFlag)
 include(CheckCXXCompilerFlag)
-foreach(FLAG -pipe -Wextra -Wpedantic -Weverything -Werror
+foreach(FLAG -pipe -Wextra -Wpedantic -Wmost -Werror
         -fcolor-diagnostics -fdiagnostics-color=always
         -Wno-declaration-after-statement # using C11
         -Wno-disabled-macro-expansion # clang on travis needs this
@@ -216,6 +216,7 @@ if(CMAKE_BUILD_TYPE MATCHES Debug)
         message(STATUS "Found clang-tidy: ${CLANGTIDY}")
         set(CLANG_TIDY_CHECKS *
             -altera-*
+            -bugprone-assignment-in-if-condition
             -bugprone-easily-swappable-parameters
             -bugprone-implicit-widening-of-multiplication-result
             -bugprone-narrowing-conversions
@@ -239,6 +240,9 @@ if(CMAKE_BUILD_TYPE MATCHES Debug)
             -llvmlibc-callee-namespace
             -llvmlibc-implementation-in-namespace
             -llvmlibc-restrict-system-libc-headers
+            -misc-include-cleaner
+            -misc-use-anonymous-namespace
+            -modernize-macro-to-enum
             -modernize-use-trailing-return-type
             -performance-no-int-to-ptr
             -readability-braces-around-statements
