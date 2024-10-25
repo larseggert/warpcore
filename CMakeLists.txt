@@ -300,7 +300,7 @@ if(NOT CMAKE_BUILD_TYPE MATCHES Release AND HAVE_PROFILER)
 endif()
 
 # flags for "Release" builds
-set(CMAKE_C_FLAGS_RELEASE "-DNDEBUG -Ofast -march=native")
+set(CMAKE_C_FLAGS_RELEASE "-DNDEBUG -O3 -ffast-math -march=native")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE}")
 
 # flags for "RelWithDebInfo" builds
